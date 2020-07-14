@@ -3,6 +3,7 @@ import 'package:rabbitplanm/routes/studypage.dart';
 
 import 'defaultpage.dart';
 import 'mypage.dart';
+import 'loginpage.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -24,7 +25,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  final pages = [DefaultPage(),StudyPage(),MyPage()];
+  final pages = [DefaultPage(),StudyPage(),LoginRoute()];
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
