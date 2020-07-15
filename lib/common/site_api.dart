@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/adapter.dart';
 import 'package:flutter/material.dart';
-//import 'package:rabbitpanm/models/repo.dart';
+import 'package:rabbitplanm/models/token.dart';
 import 'package:rabbitplanm/models/user.dart';
 
 import 'global.dart';
@@ -50,20 +50,27 @@ class Git {
   // 登录接口，登录成功后返回用户信息
   Future<User> login(String login, String pwd) async {
     String basic = 'Basic ' + base64.encode(utf8.encode('$login:$pwd'));
+    var params = {
+      "username": login,
+      "password": pwd
+    };
     var r = await dio.post(
       "/api-token-auth/",
+      data: params,
       options: _options.merge(headers: {
-        HttpHeaders.authorizationHeader: basic
-      }, extra: {
+        //HttpHeaders.authorizationHeader: basic,
+      },
+      contentType:Headers.formUrlEncodedContentType,
+      extra: {
         "noCache": true, //本接口禁用缓存
       }),
     );
     //登录成功后更新公共头（authorization），此后的所有请求都会带上用户身份信息
-    dio.options.headers[HttpHeaders.authorizationHeader] = basic;
+    dio.options.headers["Authorization"] = "Token" + r.data["token"];
     //清空所有缓存
     Global.netCache.cache.clear();
     //更新profile中的token信息
-    Global.profile.token = basic;
+    Global.profile.token = r.data["token"];
     return User.fromJson(r.data);
   }
 }

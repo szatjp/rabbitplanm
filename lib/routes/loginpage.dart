@@ -3,6 +3,8 @@ import 'package:rabbitplanm/common/funs.dart';
 import 'package:rabbitplanm/common/site_api.dart';
 import 'package:rabbitplanm/models/user.dart';
 
+import 'homepage.dart';
+
 class LoginRoute extends StatefulWidget {
   @override
   _LoginRouteState createState() => _LoginRouteState();
@@ -113,7 +115,12 @@ class _LoginRouteState extends State<LoginRoute> {
       }
       if (user != null) {
         // 返回
-        Navigator.of(context).pop();
+        //Navigator.of(context).pop();
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                new MyHomePage(title: "主页",)));
       }
     }
   }
