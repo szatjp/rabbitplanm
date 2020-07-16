@@ -1,5 +1,9 @@
 {
   "username": "sunny",
   "email": "dafaf@163.com",
-
+  "first_name": "Sunny",
+  "last_name": "Tong",
+  "last_login": "2020-07-16T06:45:04.235131Z",
+  "is_active": true,
+  "nickname": null
 }
