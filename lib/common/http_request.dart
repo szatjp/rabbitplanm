@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+
+// 暂未使用
 class MyHttpRequest {
   static final Dio dio = Dio();
 

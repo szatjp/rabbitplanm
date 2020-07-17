@@ -61,6 +61,13 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.account_circle,size:32.0),
+              tooltip: 'Air it',
+              onPressed: null,
+            )
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[

@@ -6,6 +6,7 @@ import 'package:dio/adapter.dart';
 import 'package:flutter/material.dart';
 import 'package:rabbitplanm/models/token.dart';
 import 'package:rabbitplanm/models/user.dart';
+import 'package:rabbitplanm/models/wordgroup.dart';
 
 import 'global.dart';
 //import '../index.dart';
@@ -55,7 +56,7 @@ class Git {
       "password": pwd
     };
     var r = await dio.post(
-      "/api-token-auth/",
+      "api-token-auth/",
       data: params,
       options: _options.merge(headers: {
         //HttpHeaders.authorizationHeader: basic,
@@ -66,11 +67,27 @@ class Git {
       }),
     );
     //登录成功后更新公共头（authorization），此后的所有请求都会带上用户身份信息
-    dio.options.headers["Authorization"] = "Token" + r.data["token"];
+    dio.options.headers["Authorization"] = "Token " + r.data["token"];
     //清空所有缓存
     Global.netCache.cache.clear();
     //更新profile中的token信息
     Global.profile.token = r.data["token"];
     return User.fromJson(r.data);
+  }
+
+  //获取用户项目列表
+  Future<List<Wordgroup>> getWgroup(
+      {Map<String, dynamic> queryParameters, //query参数，用于接收分页信息
+        refresh = false}) async {
+    if (refresh) {
+      // 列表下拉刷新，需要删除缓存（拦截器中会读取这些信息）
+      _options.extra.addAll({"refresh": true, "list": true});
+    }
+    var r = await dio.get<List>(
+      "rabbitapi/wordgroups/",
+      queryParameters: queryParameters,
+      options: _options,
+    );
+    return r.data.map((e) => Wordgroup.fromJson(e)).toList();
   }
 }

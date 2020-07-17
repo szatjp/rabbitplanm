@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rabbitplanm/common/funs.dart';
+import 'package:rabbitplanm/common/global.dart';
 import 'package:rabbitplanm/common/site_api.dart';
 import 'package:rabbitplanm/models/user.dart';
 
@@ -20,7 +21,7 @@ class _LoginRouteState extends State<LoginRoute> {
   @override
   void initState() {
     // 自动填充上次登录的用户名，填充后将焦点定位到密码输入框
-    //_unameController.text = Global.profile.lastLogin;
+    _unameController.text = Global.profile.lastLogin;
     if (_unameController.text != null) {
       _nameAutoFocus = false;
     }
@@ -105,9 +106,9 @@ class _LoginRouteState extends State<LoginRoute> {
       } catch (e) {
         //登录失败则提示
         if (e.response?.statusCode == 401) {
-          //showToast(GmLocalizations.of(context).userNameOrPasswordWrong);
+          showToast("用户名或密码不正确！");
         } else {
-          //showToast(e.toString());
+          showToast(e.toString());
         }
       } finally {
         // 隐藏loading框
