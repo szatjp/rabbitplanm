@@ -50,7 +50,7 @@ class _LoginRouteState extends State<LoginRoute> {
                   ),
                   // 校验用户名（不能为空）
                   validator: (v) {
-                    return v.trim().isNotEmpty ? null : "用户名是必填";
+                    return v.trim().isNotEmpty ? null : "用户名是必填"; // //condition ? expr1 : expr2,如果条件为真，返回expr1，否则返回expr2
                   }),
               TextFormField(
                 controller: _pwdController,
@@ -105,12 +105,12 @@ class _LoginRouteState extends State<LoginRoute> {
         //Provider.of<UserModel>(context, listen: false).user = user;
       } catch (e) {
         //登录失败则提示
-        if (e.response?.statusCode == 401) {
+        if (e.response?.statusCode == 401) {  // ?.条件成员访问,跟.差不多,但是最左边的操作数可以为空, e.response可以为空
           showToast("用户名或密码不正确！");
         } else {
           showToast(e.toString());
         }
-      } finally {
+      } finally {    // finally用来执行那些无论异常是否发生都执行的操作
         // 隐藏loading框
         Navigator.of(context).pop();
       }

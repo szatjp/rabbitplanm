@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+
 import 'package:rabbitplanm/models/cacheConfig.dart';
 import 'package:rabbitplanm/models/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,10 +19,10 @@ const _themes = <MaterialColor>[
 ];
 
 class Global {
-  static SharedPreferences _prefs;
-  static Profile profile = Profile();
+  static SharedPreferences _prefs; //static 关键字来实现类级别的变量和函数，建立 SharedPreferences 类
+  static Profile profile = Profile(); // 声明 profile model类
   // 网络缓存对象
-  static NetCache netCache = NetCache();   //找不到
+  static NetCache netCache = NetCache();
 
   // 可选的主题列表
   static List<MaterialColor> get themes => _themes;
@@ -31,7 +32,7 @@ class Global {
 
   //初始化全局信息，会在APP启动时执行
   static Future init() async {
-    _prefs = await SharedPreferences.getInstance();
+    _prefs = await SharedPreferences.getInstance(); //await 将操作放入到延迟运算的队列（await）中去，await 必须在async中使用
     var _profile = _prefs.getString("profile");
     if (_profile != null) {
       try {
@@ -42,8 +43,8 @@ class Global {
     }
 
     // 如果没有缓存策略，设置默认缓存策略
-    profile.cache = profile.cache ?? CacheConfig()
-      ..enable = true
+    profile.cache = profile.cache ?? CacheConfig() //expr1 ?? expr2,如果expr1为非空，则返回其值；否则，计算并返回expr2的值。
+      ..enable = true   // ..允许您对同一对象执行一系列操作。除了函数调用，您还可以访问同一对象上的字段。
       ..maxAge = 3600
       ..maxCount = 100;
 

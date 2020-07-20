@@ -6,6 +6,9 @@ import 'package:rabbitplanm/models/user.dart';
 
 class ProfileChangeNotifier extends ChangeNotifier {
   Profile get _profile => Global.profile;
+  // _ 下滑线，这个可以用于大多数名称（如：变量名，类名等）前，它会将修饰的类或变量私有化
+  // get()和set()方法是Dart 语言提供的专门用来读取和写入对象的属性的方法
+  // 每一个类的实例，系统都隐式的包含有get()和set() 方法
   @override
   void notifyListeners() {
     Global.saveProfile(); //保存Profile变更
