@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:rabbitplanm/common/funs.dart';
 import 'package:rabbitplanm/common/global.dart';
 import 'package:rabbitplanm/common/site_api.dart';
 import 'package:rabbitplanm/models/user.dart';
+import 'package:rabbitplanm/states/profile_change_notifier.dart';
+export 'package:provider/provider.dart';
 
 import 'homepage.dart';
 
@@ -22,7 +25,7 @@ class _LoginRouteState extends State<LoginRoute> {
   void initState() {
     // 自动填充上次登录的用户名，填充后将焦点定位到密码输入框
     _unameController.text = Global.profile.lastLogin;
-    if (_unameController.text != null) {
+    if (_unameController.text != null && _unameController.text.isNotEmpty) {
       _nameAutoFocus = false;
     }
     super.initState();
@@ -102,7 +105,8 @@ class _LoginRouteState extends State<LoginRoute> {
         user = await Git(context)
             .login(_unameController.text, _pwdController.text);
         // 因为登录页返回后，首页会build，所以我们传false，更新user后不触发更新
-        //Provider.of<UserModel>(context, listen: false).user = user;
+        Provider.of<UserModel>(context, listen: false).user = user;  // 更新登录用户信息
+        // Provider.of<T> 在上下文context 中获取 T 类型的值
       } catch (e) {
         //登录失败则提示
         if (e.response?.statusCode == 401) {  // ?.条件成员访问,跟.差不多,但是最左边的操作数可以为空, e.response可以为空

@@ -11,7 +11,6 @@ class User {
   String email;
   @JsonKey(name: 'first_name') String firstName;
   @JsonKey(name: 'last_name') String lastName;
-  @JsonKey(name: 'last_login') String lastLogin;
   @JsonKey(name: 'is_active') bool isActive;
   dynamic nickname;
 
