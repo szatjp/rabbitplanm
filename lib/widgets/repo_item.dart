@@ -30,13 +30,13 @@ class _RepoItemState extends State<RepoItem> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               ListTile(
-                dense: true,
+                //dense: true,
                 title: Text(
                   widget.repo.fgroupnum,
-                  textScaleFactor: .9,
+                  //textScaleFactor: 1,
                 ),
-                subtitle: subtitle,
-                trailing: Text(widget.repo.fstateid ?? ""),
+                subtitle: Text(widget.repo.fstatename ?? "空的"),
+                //trailing: Text(widget.repo.fstateid ?? ""),
               ),
               // 构建项目标题和简介
               Padding(

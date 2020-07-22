@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:rabbitplanm/routes/studypage.dart';
 
-import './pages/Tabs.dart';
-import './pages/Form.dart';
-import './pages/Search.dart';
-import './pages/Product.dart';
-import './pages/ProductInfo.dart';
+import 'defaultpage.dart';
+import 'homepage.dart';
 
 // 配置路由
 final routes = {
-  '/': (context) => Tabs(),
-  '/form': (context) => FormPage(),
-  '/search': (context, { arguments }) => SearchPage(arguments: arguments),
-  '/product': (context) => ProductPage(),
-  '/productinfo': (context, { arguments }) => ProductInfoPage(arguments: arguments),
+  '/': (context) => MyHomePage(),
+  '/default': (context) => DefaultPage(),
+  //'/search': (context, { arguments }) => SearchPage(arguments: arguments),
+  '/study': (context) => StudyPage(),
+  //'/productinfo': (context, { arguments }) => ProductInfoPage(arguments: arguments),
 };
 
 // 固定写法

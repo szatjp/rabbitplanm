@@ -4,6 +4,7 @@ import 'package:rabbitplanm/routes/studypage.dart';
 import 'defaultpage.dart';
 import 'mypage.dart';
 import 'loginpage.dart';
+import 'package:rabbitplanm/routes/routes.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);

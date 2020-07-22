@@ -11,6 +11,7 @@ class Wordgroup {
   String fgroupnum;
   String flan;
   String fstateid;
+  String fstatename;
   String ffinitime;
   String fntime;
   String ffmemory;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rabbitplanm/routes/homepage.dart';
+import 'package:rabbitplanm/routes/routes.dart';
 import 'package:rabbitplanm/states/profile_change_notifier.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -69,14 +70,11 @@ class MyApp extends StatelessWidget {
               //"themes": (context) => ThemeChangeRoute(),
               //"language": (context) => LanguageRoute(),
               },*/
-              // 控制路由访问
-              onGenerateRoute: (RouteSettings settings) {
-                return MaterialPageRoute(builder: (context) {
-                  String routeName = settings.name;
-                  // 如果访问的路由页需要登录，但当前未登录，则直接返回登录页路由，
-                  // 引导用户登录；其它情况则正常打开路由。
-                });
-              });
+            // 初始化的时候加载的路由
+            initialRoute: '/',
+            // 为了路由传参，这么做
+            onGenerateRoute: onGenerateRoute,
+          );
         },
       ),
     );
