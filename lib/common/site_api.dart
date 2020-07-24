@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/adapter.dart';
 import 'package:flutter/material.dart';
+import 'package:rabbitplanm/models/newwords.dart';
 import 'package:rabbitplanm/models/token.dart';
 import 'package:rabbitplanm/models/user.dart';
 import 'package:rabbitplanm/models/wordgroup.dart';
@@ -75,7 +76,7 @@ class Git {
     return User.fromJson(r.data);
   }
 
-  //获取用户项目列表
+  //获取生词组列表
   Future<List<Wordgroup>> getWgroup(
       {Map<String, dynamic> queryParameters, //query参数，用于接收分页信息
         refresh = false}) async {
@@ -89,5 +90,21 @@ class Git {
       options: _options,
     );
     return r.data.map((e) => Wordgroup.fromJson(e)).toList();
+  }
+
+  //获取生词组内生词
+  Future<List<Newwords>> getGroupWords(
+      {Map<String, dynamic> queryParameters, //query参数，用于接收分页信息
+        refresh = false}) async {
+    if (refresh) {
+      // 列表下拉刷新，需要删除缓存（拦截器中会读取这些信息）
+      _options.extra.addAll({"refresh": true, "list": true});
+    }
+    var r = await dio.get<List>(
+      "rabbitapi/nwordsgroup/140/",
+      queryParameters: queryParameters,
+      options: _options,
+    );
+    return r.data.map((e) => Newwords.fromJson(e)).toList();
   }
 }
