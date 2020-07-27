@@ -6,6 +6,12 @@ import 'package:rabbitplanm/models/wordgroup.dart';
 import 'package:rabbitplanm/widgets/repo_item.dart';
 
 class GroupNewPage extends StatelessWidget {
+  GroupNewPage({
+    Key key,
+    @required this.groupid,  // 接收一个text参数
+  }) : super(key: key);
+  final int groupid;
+
   @override
   Widget build(BuildContext context) {
     return InfiniteListView<Newwords>(
@@ -18,7 +24,7 @@ class GroupNewPage extends StatelessWidget {
           },
         );
         //把请求到的新数据添加到items中
-        items.addAll(data.groupwords);
+        items.addAll(data);
         return data.length > 0 && data.length % 20 == 0;
       },
       itemBuilder: (List list, int index, BuildContext ctx) {

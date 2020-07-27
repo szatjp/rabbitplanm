@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rabbitplanm/models/wordgroup.dart';
+import 'package:rabbitplanm/routes/newwords.dart';
 
 
 class RepoItem extends StatefulWidget {
@@ -37,6 +38,13 @@ class _RepoItemState extends State<RepoItem> {
                 ),
                 subtitle: Text(widget.repo.fstatename ?? "空的"),
                 //trailing: Text(widget.repo.fstateid ?? ""),
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(
+                    //注意传递的参数。goods_list[index]，是吧索引下的goods_date 数据传递了
+                      builder: (context){return GroupNewPage(groupid: widget.repo.fid,);}
+                  )
+                  );
+                },
               ),
               // 构建项目标题和简介
               Padding(
