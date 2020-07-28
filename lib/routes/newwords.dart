@@ -17,6 +17,7 @@ class GroupNewPage extends StatelessWidget {
     return InfiniteListView<Newwords>(
       onRetrieveData: (int page, List<Newwords> items, bool refresh) async {
         var data = await Git(context).getGroupWords(
+          groupid: groupid,
           refresh: refresh,
           queryParameters: {
             'page': page,
@@ -24,6 +25,10 @@ class GroupNewPage extends StatelessWidget {
           },
         );
         //把请求到的新数据添加到items中
+        var group = new Wordgroup.fromJson(data.wgroup);
+        var groupwords = new Newwords.fromJson(data.groupwords);
+        print(group);
+        print(groupwords);
         items.addAll(data);
         return data.length > 0 && data.length % 20 == 0;
       },
