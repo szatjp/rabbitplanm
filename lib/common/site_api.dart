@@ -23,7 +23,8 @@ class Git {
   Options _options;
   static Dio dio = new Dio(BaseOptions(
     //baseUrl: 'http://116.62.162.224/',
-    baseUrl: 'http://192.168.3.88:8000/',
+    //baseUrl: 'http://192.168.3.88:8000/',
+    baseUrl: 'http://192.168.15.59:8000/',
     headers: {
       //HttpHeaders.acceptHeader: "application/vnd.github.squirrel-girl-preview,"
      //     "application/vnd.github.symmetra-preview+json",

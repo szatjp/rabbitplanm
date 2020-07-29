@@ -25,7 +25,7 @@ class GroupNewPage extends StatelessWidget {
           },
         );
         //把请求到的新数据添加到items中
-        var group = new Wordgroup.fromJson(data.wgroup);
+        var group = new Wordgroup.fromJson(data.data['wgroup']);
         var groupwords = new Newwords.fromJson(data.groupwords);
         print(group);
         print(groupwords);
