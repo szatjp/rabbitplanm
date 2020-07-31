@@ -1,6 +1,9 @@
 export 'cacheConfig.dart';
+export 'groupnwords.dart';
+export 'newword.dart';
 export 'newwords.dart';
 export 'profile.dart';
 export 'token.dart';
 export 'user.dart';
+export 'word.dart';
 export 'wordgroup.dart';

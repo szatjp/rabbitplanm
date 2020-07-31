@@ -8,6 +8,7 @@ import 'package:rabbitplanm/models/newwords.dart';
 import 'package:rabbitplanm/models/token.dart';
 import 'package:rabbitplanm/models/user.dart';
 import 'package:rabbitplanm/models/wordgroup.dart';
+import 'package:rabbitplanm/models/groupnwords.dart';
 
 import 'global.dart';
 //import '../index.dart';
@@ -95,7 +96,7 @@ class Git {
   }
 
   //获取生词组内生词
-  Future getGroupWords(
+  Future<Groupnwords> getGroupWords(
       {Map<String, dynamic> queryParameters, //query参数，用于接收分页信息
         refresh = false, int groupid}) async {
     if (refresh) {
@@ -104,10 +105,9 @@ class Git {
     }
     var r = await dio.get(
       "rabbitapi/nwordsgroup/"+groupid.toString()+"/",
-      queryParameters: queryParameters,
       options: _options,
     );
     //print(r);
-    return r;    //r.data.map((e) => Newwords.fromJson(e)).toList();
+    return Groupnwords.fromJson(r.data); //r.data.map((e) => Groupnwords.fromJson(e));    //r.data.map((e) => Newwords.fromJson(e)).toList();
   }
 }
